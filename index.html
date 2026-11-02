@@ -62,9 +62,9 @@ footer { border-top: 1px solid var(--line); padding: 22px 24px; text-align: cent
     <h1>MartiLauncher</h1>
     <p class="lead">A simple launcher for Minecraft Bedrock Edition with 33 pixel themes. Download it, install it and press Launch.</p>
     <div class="cta">
-      <a class="dl" id="dl" href="MartiLauncher%20Setup%201.0.0.exe" download>Download</a>
+      <a class="dl" id="dl" href="https://github.com/Marti15150/MartiLauncherDownload/releases/latest/download/MartiLauncher-Setup-1.0.0.exe">Download</a>
       <div class="meta">
-        Version 1.0.0 &middot; Windows 10 / 11<br>
+        <span id="ver">Version 1.0.0</span> &middot; Windows 10 / 11<br>
         <span id="size"></span>
         <div id="status" role="status"></div>
       </div>
@@ -128,13 +128,22 @@ footer { border-top: 1px solid var(--line); padding: 22px 24px; text-align: cent
   [[22,34,12,8],[48,35,14,9],[73,34,11,7],[92,35,13,8]].forEach(t => tree(t[0], t[1], t[2], t[3]));
 })();
 
-// Show the real file size if the server tells us (works once the site is hosted)
+// Ask GitHub for the newest release: gives the exact file name, link, size and version
 (function () {
-  const dl = document.getElementById('dl'), size = document.getElementById('size'), status = document.getElementById('status');
-  fetch(dl.getAttribute('href'), { method: 'HEAD' }).then(r => {
-    const n = parseInt(r.headers.get('content-length'), 10);
-    if (r.ok && n) size.textContent = 'Size: ' + (n / 1048576).toFixed(0) + ' MB';
-  }).catch(() => {});
+  const REPO = 'Marti15150/MartiLauncherDownload';
+  const dl = document.getElementById('dl'), size = document.getElementById('size');
+  const status = document.getElementById('status'), ver = document.getElementById('ver');
+  fetch('https://api.github.com/repos/' + REPO + '/releases/latest')
+    .then(r => r.ok ? r.json() : null)
+    .then(rel => {
+      if (!rel) return;
+      const a = (rel.assets || []).find(x => /\.exe$/i.test(x.name));
+      if (!a) return;
+      dl.href = a.browser_download_url;
+      size.textContent = 'Size: ' + (a.size / 1048576).toFixed(0) + ' MB';
+      if (rel.tag_name) ver.textContent = 'Version ' + rel.tag_name.replace(/^v/i, '');
+    })
+    .catch(() => {});
   dl.addEventListener('click', () => {
     status.textContent = 'Download started...';
     setTimeout(() => { status.textContent = 'Check your Downloads folder.'; }, 2500);
