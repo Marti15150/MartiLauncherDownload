@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MartiLauncher - Download</title>
+<meta name="description" content="MartiLauncher: a launcher for Minecraft Bedrock Edition. Download the Windows installer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0f24; --panel: #121836; --line: #2a3350;
+  --ink: #ffffff; --muted: #c9d0ee;
+  --btn: #3b6fe0; --btn-hi: #5a8bf5; --btn-lo: #234aa8; --ok: #7dffb0;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink); }
+body { font-family: "Silkscreen", "Consolas", monospace; }
+
+.hero { position: relative; min-height: 520px; height: 78vh; overflow: hidden; }
+#sky { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
+.shade { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(6,10,32,.30), rgba(6,10,32,0) 45%, rgba(6,10,32,.85)); }
+.heroin { position: relative; height: 100%; max-width: 980px; margin: 0 auto; padding: 36px 24px; display: flex; flex-direction: column; }
+.badge { align-self: flex-start; background: #0c0f1e; border: 1px solid var(--line); padding: 7px 12px; font-size: 11px; display: flex; gap: 10px; align-items: center; }
+.badge i { width: 8px; height: 8px; background: var(--ok); display: inline-block; }
+.badge b { color: var(--ok); font-weight: 400; }
+h1 { font-family: "Press Start 2P", "Silkscreen", monospace; font-weight: 400; font-size: clamp(26px, 6vw, 56px); line-height: 1.15; margin: 26px 0 16px; text-shadow: 4px 4px 0 #1b2560; }
+.lead { max-width: 560px; color: var(--muted); font-family: "Consolas", monospace; font-size: 15px; line-height: 1.55; margin: 0; text-shadow: 0 1px 2px rgba(0,0,0,.6); }
+.cta { margin-top: auto; display: flex; align-items: flex-end; gap: 22px; flex-wrap: wrap; }
+
+.dl {
+  font-family: "Silkscreen", monospace; font-weight: 700; font-size: 22px; color: #fff; text-decoration: none;
+  background: var(--btn); padding: 18px 56px; display: inline-flex; align-items: center; gap: 20px;
+  box-shadow: inset 0 -5px 0 var(--btn-lo), inset 0 4px 0 var(--btn-hi), 0 0 0 3px #182a66;
+  transition: transform .08s;
+}
+.dl:hover { background: var(--btn-hi); }
+.dl:active { transform: translateY(2px); }
+.dl:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+.dl::before { content: ""; width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 12px solid #fff; }
+.meta { font-family: "Consolas", monospace; font-size: 13px; color: var(--muted); line-height: 1.6; padding-bottom: 6px; }
+#status { color: var(--ok); min-height: 20px; }
+
+main { max-width: 980px; margin: 0 auto; padding: 44px 24px 60px; }
+h2 { font-size: 18px; margin: 0 0 18px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 44px; }
+.card { background: var(--panel); border: 2px solid var(--line); padding: 18px; font-family: "Consolas", monospace; font-size: 14px; line-height: 1.55; color: var(--muted); }
+.card .n { display: inline-block; font-family: "Silkscreen", monospace; color: #fff; background: var(--btn); padding: 3px 9px; margin-bottom: 10px; }
+.card b { color: #fff; }
+.note { border-left: 4px solid var(--btn-hi); padding: 6px 0 6px 16px; font-family: "Consolas", monospace; font-size: 14px; line-height: 1.6; color: var(--muted); margin-bottom: 44px; }
+.note b { color: #fff; }
+footer { border-top: 1px solid var(--line); padding: 22px 24px; text-align: center; color: #8e98c4; font-size: 12px; }
+</style>
+</head>
+<body>
+<header class="hero">
+  <canvas id="sky" width="96" height="36"></canvas>
+  <div class="shade"></div>
+  <div class="heroin">
+    <div class="badge"><i></i><span>MINECRAFT BEDROCK</span><b>WINDOWS</b></div>
+    <h1>MartiLauncher</h1>
+    <p class="lead">A simple launcher for Minecraft Bedrock Edition with 33 pixel themes. Download it, install it and press Launch.</p>
+    <div class="cta">
+      <a class="dl" id="dl" href="MartiLauncher%20Setup%201.0.0.exe" download>Download</a>
+      <div class="meta">
+        Version 1.0.0 &middot; Windows 10 / 11<br>
+        <span id="size"></span>
+        <div id="status" role="status"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <h2>How to install</h2>
+  <div class="grid">
+    <div class="card"><span class="n">1</span><br><b>Download</b> the installer with the big blue button.</div>
+    <div class="card"><span class="n">2</span><br><b>Run</b> <i>MartiLauncher Setup 1.0.0.exe</i> and follow the steps.</div>
+    <div class="card"><span class="n">3</span><br><b>Open MartiLauncher</b>, pick a theme and press <b>Launch</b>.</div>
+  </div>
+
+  <div class="note">
+    <b>Windows says "Windows protected your PC"?</b> The installer is not signed with a paid code-signing certificate, so SmartScreen warns about new apps. Click <b>More info</b>, then <b>Run anyway</b>.
+  </div>
+
+  <h2>Requirements</h2>
+  <div class="grid">
+    <div class="card"><b>Minecraft Bedrock Edition</b> installed from the Microsoft Store or the Xbox app.</div>
+    <div class="card"><b>Windows 10 or 11</b>, 64-bit.</div>
+    <div class="card"><b>About 200 MB</b> of free disk space.</div>
+  </div>
+</main>
+
+<footer>MartiLauncher is a fan-made project and is not affiliated with Mojang or Microsoft. Minecraft is a trademark of Mojang AB.</footer>
+
+<script>
+// Night cherry grove, drawn on a tiny canvas and scaled up
+(function () {
+  const c = document.getElementById('sky'), g = c.getContext('2d');
+  const W = c.width, H = c.height;
+  let s = 11; const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647;
+  const sky = ['#060a20','#0a1030','#0e173f','#141f50','#1b2a63','#243773','#2e4584'];
+  sky.forEach((col, i) => { g.fillStyle = col; g.fillRect(0, Math.floor(i * 26 / 7), W, Math.ceil(26 / 7) + 1); });
+  g.fillStyle = '#b9c8f5';
+  [[10,4],[27,9],[46,3],[84,5],[90,12],[18,15]].forEach(p => g.fillRect(p[0], p[1], 1, 1));
+  function box(cx, cy, half, col, a) { g.globalAlpha = a; g.fillStyle = col; g.fillRect(cx - half, cy - half, half * 2 + 1, half * 2 + 1); g.globalAlpha = 1; }
+  box(66, 9, 9, '#6f86d8', .10); box(66, 9, 7, '#8fa6ea', .16); box(66, 9, 4, '#f3f1dc', 1);
+  g.fillStyle = '#d6d3b8'; g.fillRect(63, 6, 2, 2); g.fillRect(67, 10, 2, 2);
+  function hills(col, base, amp, seed) { g.fillStyle = col; for (let x = 0; x < W; x++) { const y = Math.floor(base + Math.sin((x + seed) / 7) * amp + Math.sin((x + seed) / 3) * amp * .35); g.fillRect(x, y, 1, H - y); } }
+  hills('#1d2a5c', 22, 2, 3); hills('#152048', 25, 1.6, 22);
+  g.fillStyle = '#2b4a4a'; g.fillRect(0, 26, W, H);
+  g.fillStyle = '#223e40'; g.fillRect(0, 30, W, H);
+  g.fillStyle = '#1a3236'; g.fillRect(0, 33, W, H);
+  const cols = ['#c98fb8','#b97aa7','#a56794','#d9a8c6'];
+  function tree(x, base, h, sp) {
+    const top = base - h;
+    g.fillStyle = '#2b1b30'; g.fillRect(x - 1, top, 2, h); g.fillRect(x - 2, base - 1, 4, 1); g.fillRect(x + 1, top + 3, 3, 1); g.fillRect(x - 3, top + 4, 3, 1);
+    for (let i = 0; i < 22; i++) {
+      const ox = Math.floor((rnd() - .5) * sp * 2), oy = Math.floor((rnd() - .6) * sp * 1.1);
+      const bw = 3 + Math.floor(rnd() * 3), bh = 2 + Math.floor(rnd() * 2);
+      g.fillStyle = cols[Math.floor(rnd() * 4)]; g.fillRect(x + ox - Math.floor(bw / 2), top + oy, bw, bh);
+    }
+    g.fillStyle = '#6e4272';
+    for (let i = 0; i < 5; i++) g.fillRect(x + Math.floor((rnd() - .5) * sp * 1.5), top + Math.floor(sp * .45), 3, 1);
+  }
+  [[9,27,8,5],[35,27,9,6],[60,27,7,5],[84,27,8,5]].forEach(t => tree(t[0], t[1], t[2], t[3]));
+  [[22,34,12,8],[48,35,14,9],[73,34,11,7],[92,35,13,8]].forEach(t => tree(t[0], t[1], t[2], t[3]));
+})();
+
+// Show the real file size if the server tells us (works once the site is hosted)
+(function () {
+  const dl = document.getElementById('dl'), size = document.getElementById('size'), status = document.getElementById('status');
+  fetch(dl.getAttribute('href'), { method: 'HEAD' }).then(r => {
+    const n = parseInt(r.headers.get('content-length'), 10);
+    if (r.ok && n) size.textContent = 'Size: ' + (n / 1048576).toFixed(0) + ' MB';
+  }).catch(() => {});
+  dl.addEventListener('click', () => {
+    status.textContent = 'Download started...';
+    setTimeout(() => { status.textContent = 'Check your Downloads folder.'; }, 2500);
+  });
+})();
+</script>
+</body>
+</html>
